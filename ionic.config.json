@@ -1,0 +1,7 @@
+{
+  "name": "GestionEducativa",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
