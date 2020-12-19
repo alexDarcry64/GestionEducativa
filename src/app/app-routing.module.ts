@@ -23,6 +23,38 @@ const routes: Routes = [
     path: 'chatbot',
     loadChildren: () => import('./chatbot/chatbot.module').then( m => m.ChatbotPageModule)
   },
+  {
+    path: 'alumnos',
+    loadChildren: () => import('./alumnos/alumnos.module').then( m => m.AlumnosPageModule)
+  },
+  {
+    path: 'agregar-alumno',
+    loadChildren: () => import('./agregar-alumno/agregar-alumno.module').then( m => m.AgregarAlumnoPageModule)
+  },
+  {
+    path: 'cursos',
+    loadChildren: () => import('./cursos/cursos.module').then( m => m.CursosPageModule)
+  },
+  {
+    path: 'agregar-cursos',
+    loadChildren: () => import('./agregar-cursos/agregar-cursos.module').then( m => m.AgregarCursosPageModule)
+  },
+  {
+    path: 'espanol',
+    loadChildren: () => import('./espanol/espanol.module').then( m => m.EspanolPageModule)
+  },
+  {
+    path: 'historia',
+    loadChildren: () => import('./historia/historia.module').then( m => m.HistoriaPageModule)
+  },
+  {
+    path: 'matematicas',
+    loadChildren: () => import('./matematicas/matematicas.module').then( m => m.MatematicasPageModule)
+  },
+  {
+    path: 'quimica',
+    loadChildren: () => import('./quimica/quimica.module').then( m => m.QuimicaPageModule)
+  },
 ];
 
 @NgModule({
