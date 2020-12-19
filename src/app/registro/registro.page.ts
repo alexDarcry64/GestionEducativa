@@ -13,17 +13,6 @@ export class RegistroPage implements OnInit {
 
   constructor(private camera: Camera) { }
 
-  getCamera() {
-    this.camera.getPicture({
-      sourceType: this.camera.PictureSourceType.CAMERA,
-      destinationType: this.camera.DestinationType.FILE_URI
-    }).then( (res) => {
-      this.imgURL = res;
-    }).catch(e=>{
-      console.log(e);
-    })
-  }
-
   getGalery() {
     this.camera.getPicture({
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
