@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
+
 
 @Component({
   selector: 'app-registro',
@@ -8,24 +9,32 @@ import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker/ngx'
 })
 export class RegistroPage implements OnInit {
 
-  images:any=[];
+  imgURL;
 
-  constructor(private imagePicker: ImagePicker) { }
+  constructor(private camera: Camera) { }
 
-  getImages() {
-    var options:ImagePickerOptions={
-      maximumImagesCount:1,
-      width:100,
-      height:100
-    }
-    this.imagePicker.getPictures(options).then((results)=>{
-      for(var interval = 0; interval<results.lenght; interval++){
-        let filename = results[interval].substring(results[interval].lastIndexOf('/')+1);
-        let path = results[interval].substring(0,results[interval].lastIndexOf('/')+1)
-        
-      }
-    } );
+  getCamera() {
+    this.camera.getPicture({
+      sourceType: this.camera.PictureSourceType.CAMERA,
+      destinationType: this.camera.DestinationType.FILE_URI
+    }).then( (res) => {
+      this.imgURL = res;
+    }).catch(e=>{
+      console.log(e);
+    })
   }
+
+  getGalery() {
+    this.camera.getPicture({
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.DATA_URL
+    }).then( (res) => {
+      this.imgURL = 'data:image/jpeg;base64,' + res;
+    }).catch(e=>{
+      console.log(e);
+    })
+  }
+
   ngOnInit() {
   }
 
