@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ChatbotPageRoutingModule } from './chatbot-routing.module';
 
 import { ChatbotPage } from './chatbot.page';
+import { AutosizeModule } from 'ngx-autosize';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ChatbotPageRoutingModule
+    ChatbotPageRoutingModule,
+    AutosizeModule
   ],
   declarations: [ChatbotPage]
 })
