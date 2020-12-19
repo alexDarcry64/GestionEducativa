@@ -55,6 +55,30 @@ const routes: Routes = [
     path: 'quimica',
     loadChildren: () => import('./quimica/quimica.module').then( m => m.QuimicaPageModule)
   },
+  {
+    path: 'menu',
+    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
+  },
+  {
+    path: 'seccion',
+    loadChildren: () => import('./seccion/seccion.module').then( m => m.SeccionPageModule)
+  },
+  {
+    path: 'agregar-seccion',
+    loadChildren: () => import('./agregar-seccion/agregar-seccion.module').then( m => m.AgregarSeccionPageModule)
+  },
+  {
+    path: 'agregar-categoria',
+    loadChildren: () => import('./agregar-categoria/agregar-categoria.module').then( m => m.AgregarCategoriaPageModule)
+  },
+  {
+    path: 'agregar-pregunta',
+    loadChildren: () => import('./agregar-pregunta/agregar-pregunta.module').then( m => m.AgregarPreguntaPageModule)
+  },
+  {
+    path: 'examen',
+    loadChildren: () => import('./examen/examen.module').then( m => m.ExamenPageModule)
+  },
 ];
 
 @NgModule({
