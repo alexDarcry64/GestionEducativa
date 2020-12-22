@@ -1,45 +1,40 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Devdactic Chat</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-  <form>
-    <ion-item lines="full">
-      <ion-label position="floating">Usuario</ion-label>
-      <ion-input type="text" #email required></ion-input>
+ 
+<ion-content class="ion-padding">
+ 
+  <form [formGroup]="credentialForm">
+    <ion-item>
+      <ion-input
+        placeholder="Email address"
+        formControlName="email"
+        autofocus="true"
+        clearInput="true"
+      ></ion-input>
     </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" #password required></ion-input>
+    <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
+      <span *ngIf="email.errors?.required">Email is required</span>
+      <span *ngIf="email.errors?.email">Email is invalid</span>
+    </div>
+ 
+    <ion-item>
+      <ion-input
+      placeholder="Password"
+      type="password"
+      formControlName="password"
+      clearInput="true"
+    ></ion-input>
     </ion-item>
-    <ion-row>
-      <ion-col>
-        <ion-button type="submit" (click)="onLogin(email, password)" expand="block">Login</ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <p class="ion-text-end">
-          <a routerLink="/forgot-password">¿Olvidaste tu contraseña? </a>
-        </p>
-      </ion-col>
-    </ion-row>
-    <span class="center-span"> o </span>
-    <ion-row>
-      <ion-col>
-        <ion-button type="submit" color="danger" (click)="onLoginGoogle()" expand="block"
-          >Iniciar sesión con Google
-        </ion-button>
-      </ion-col>
-    </ion-row>
+    <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
+      <span *ngIf="password.errors?.required">Password is required</span>
+      <span *ngIf="password.errors?.minlength">Password needs to be 6 characters</span>
+    </div>
   </form>
-  <ion-row>
-    <ion-col>
-      <p class="ion-text-end">
-        <a routerLink="/registro">Registrate aqui</a>
-      </p>
-    </ion-col>
-  </ion-row>
+ 
+    <ion-button (click)="signUp()" expand="full">Sing up</ion-button>
+    <ion-button (click)="signIn()" expand="full" color="secondary">Sing in</ion-button>
+ 
 </ion-content>

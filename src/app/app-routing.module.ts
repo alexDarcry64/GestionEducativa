@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
+
+const redirectUnauthorizedToLogin = () =>
+  redirectUnauthorizedTo(['/']);
+ 
+const redirectLoggedInToChat = () => redirectLoggedInTo(['/chatbot']);
 
 const routes: Routes = [
   {
@@ -13,14 +19,12 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'registro',
-    loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
+    ...canActivate(redirectLoggedInToChat),
   },
   {
     path: 'chatbot',
+    ...canActivate(redirectUnauthorizedToLogin),
     loadChildren: () => import('./chatbot/chatbot.module').then( m => m.ChatbotPageModule)
   },
   {

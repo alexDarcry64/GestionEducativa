@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonContent } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { ChatService } from '../services/chat.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chatbot',
@@ -7,45 +10,28 @@ import { IonContent } from '@ionic/angular';
   styleUrls: ['./chatbot.page.scss'],
 })
 export class ChatbotPage implements OnInit {
-  
-  mensajes = [
-    {
-      user:'simon',
-      createdAt: 1554090856000,
-      msg: 'Hola, en que puedo Ayudarte'
-    },
-    {
-      user:'max',
-      createdAt: 1554090956000,
-      msg: 'Gracias'
-    },
-    {
-      user:'simon',
-      createdAt: 1554091056000,
-      msg: 'denada'
-    },
-  ];
-
-  currentUser = 'simon'; 
+  @ViewChild(IonContent) content: IonContent;
+ 
+  messages: Observable<any[]>;
   newMsg = '';
-  @ViewChild(IonContent) content: IonContent
-
-  constructor() { }
-
-  sendMessage(){
-    this.mensajes.push({
-      user: 'simon',
-      createdAt: new Date().getTime(),
-      msg:this.newMsg
-    });
-
-    this.newMsg = '';
-    setTimeout(() => {
-      this.content.scrollToBottom(200);
+ 
+  constructor(private chatService: ChatService, private router: Router) { }
+ 
+  ngOnInit() {
+    this.messages = this.chatService.getChatMessages();
+  }
+ 
+  sendMessage() {
+    this.chatService.addChatMessage(this.newMsg).then(() => {
+      this.newMsg = '';
+      this.content.scrollToBottom();
     });
   }
-
-  ngOnInit() {
+ 
+  signOut() {
+    this.chatService.signOut().then(() => {
+      this.router.navigateByUrl('/', { replaceUrl: true });
+    });
   }
 
 }
