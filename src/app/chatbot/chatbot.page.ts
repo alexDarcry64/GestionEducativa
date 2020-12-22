@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonContent } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { ChatService } from '../services/chat.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chatbot',
@@ -15,7 +14,7 @@ export class ChatbotPage implements OnInit {
   messages: Observable<any[]>;
   newMsg = '';
  
-  constructor(private chatService: ChatService, private router: Router) { }
+  constructor(private chatService: ChatService) { }
  
   ngOnInit() {
     this.messages = this.chatService.getChatMessages();
@@ -28,10 +27,6 @@ export class ChatbotPage implements OnInit {
     });
   }
  
-  signOut() {
-    this.chatService.signOut().then(() => {
-      this.router.navigateByUrl('/', { replaceUrl: true });
-    });
-  }
+  
 
 }
