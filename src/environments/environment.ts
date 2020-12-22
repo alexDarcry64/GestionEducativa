@@ -4,6 +4,16 @@
 
 export const environment = {
   production: false
+  firebaseConfig:{
+    apiKey: "AIzaSyC03zjD7xKd788To5vzmsOzdOTxD5InZiE",
+    authDomain: "gestioneducativa-51422.firebaseapp.com",
+    databaseURL: "https://gestioneducativa-51422-default-rtdb.firebaseio.com",
+    projectId: "gestioneducativa-51422",
+    storageBucket: "gestioneducativa-51422.appspot.com",
+    messagingSenderId: "718706750337",
+    appId: "1:718706750337:web:3c1a916cc898cc0e216e80",
+    measurementId: "G-HN5YJFQQ28"
+  }
 };
 
 /*
